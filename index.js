@@ -35,11 +35,13 @@ module.exports = class ArcGISPlugin {
         "3d": true
       },
       userDefinedExcludes: [],
-      locales: []
+      locales: [],
+      widgets:[],
+      excludeThemes:[],
     };
     this.options = { ...this.options, ...options, ...options.options };
   }
-  
+
   apply(compiler) {
     compiler.options.module.rules = compiler.options.module.rules || [];
     if (this.options.useDefaultAssetLoaders) {
@@ -68,7 +70,7 @@ module.exports = class ArcGISPlugin {
         ]
       });
     }
-    const plugins = requiredPlugins(this.options.locales);
+    const plugins = requiredPlugins(this.options.locales, this.options.widgets, this.options.excludeThemes);
     plugins.forEach(plugin => plugin.apply(compiler));
   }
 };
