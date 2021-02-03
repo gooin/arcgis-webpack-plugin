@@ -1,5 +1,33 @@
 # @arcgis/webpack-plugin
 
+基于官方增加了两个功能：
+1、移除不必要的主题CSS文件
+2、排除了\build\assets\esri\widgets\ScaleRangeSlider\images\scalePreview 目录下没有移除的国际化文件。
+
+
+用法： 
+```javascript
+// arcgis 体积优化
+webpackConfig.plugins.push(
+    new ArcGISPlugin({
+        locales: ['zh-CN'],
+        // 自定义arcgis的插件，排除用不到的主题目录
+        excludeThemes:[
+            'dark',
+            'dark-blue',
+            'dark-green',
+            'dark-purple',
+            'dark-red',
+            'light-blue',
+            'light-green',
+            'light-purple',
+            'light-red',
+        ]
+    })
+);
+```
+
+
 [![npm version][npm-img]][npm-url]
 [![build status][travis-img]][travis-url]
 [![apache licensed](https://img.shields.io/badge/license-Apache%202.0-orange.svg?style=flat-square)](https://raw.githubusercontent.com/Esri/arcgis-webpack-plugin/master/LICENSE)
@@ -15,14 +43,16 @@ Helper plugin for building ArcGIS API for JavaScript applications with webpack.
 
 For version 4.17 and lower, please see [this documentation here](https://github.com/Esri/arcgis-webpack-plugin/blob/96c60c8d469e4976d1b62ec30b4c9838e4d74480/README.md).
 
-* [Features](#features)
-* [Options](#options)
-* [Usage](#usage)
-  * [Asset Loaders](#asset-loaders)
-  * [Additional Features](#additional-features)
-* [Issues](#issues)
-* [Contributing](#contributing)
-* [Licensing](#licensing)
+- [@arcgis/webpack-plugin](#arcgiswebpack-plugin)
+- [Features](#features)
+- [Options](#options)
+- [Usage](#usage)
+  - [Asset Loaders](#asset-loaders)
+  - [Additional Features](#additional-features)
+    - [Excluding modules](#excluding-modules)
+- [Issues](#issues)
+- [Contributing](#contributing)
+- [Licensing](#licensing)
 
 # Features
 
